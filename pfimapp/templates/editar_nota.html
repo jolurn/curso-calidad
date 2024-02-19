@@ -1,0 +1,137 @@
+{% extends 'baseDocente.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ingresar Calificaciones</title>
+    <!-- Agregar los enlaces a los archivos de estilos de Bootstrap -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;500;700;800&display=swap" rel="stylesheet">
+    
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/estilos_docente.css' %}"
+      />
+  </head>
+  <body>
+    <div class="container  mt-4">
+      <div class="container mb-3 mt-3">
+        <h1>INGRESAR CALIFICACIONES</h1>
+        <strong>MAESTRIA: </strong> <span>{{seccion.maestria.nombre}}</span> <br>
+        <strong>CURSO: </strong><span>{{seccion.curso.nombre}}</span><br>
+        <strong>PERIODO: </strong><span>{{seccion.periodo.codigo}}</span>
+      </div>      
+      <form method="post" id="calificacionesForm">
+        {% csrf_token %}
+        <table class="table">
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>ALUMNO</th>
+              {% for definicion in definiciones %}
+                <th>{{ definicion.nombre|upper }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for alumno in alumnos %}
+              <tr>
+                <td>{{ forloop.counter }}</td>                
+                <td>{{ alumno.nombre_completo|upper }}</td>
+                {% for definicion in definiciones %}
+                  <td>
+                    <input type="number" id="myInput" step="0.001" min="0" max="20" class="form-control" name="alumno_{{ alumno.id }}_definicion_{{ definicion.id }}" value="" />
+                    <input type="hidden" id="successIndicator" value="{{ success }}">
+                  </td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-between">
+          <a href="/cargar_calificaciones" class="btn btn-primary">Home</a>
+          <a href="/logoutDocente" class="btn btn-danger fondoRojo">Cerrar sesión</a>
+          <button class="btn btn-primary fondoAzul" id="miBoton">Guardar</button>
+        </div>
+      </form> 
+      </br>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        
+        // Itera a través de las celdas de entrada de texto
+        $('input[type="number"]').each(function () {
+            var inputElement = $(this);
+            var name = inputElement.attr('name'); // Obtén el atributo 'name'
+
+            // Realiza una solicitud AJAX para obtener la calificación del alumno y definición
+            $.ajax({
+                url: '/actualizar_calificacion/', // Ruta a tu vista de Django para actualizar calificaciones
+                type: 'GET',
+                headers: { 'X-CSRFToken': getCookie('csrftoken') }, // Incluye el token CSRF en el encabezado
+                data: {
+                    input_name: name // Usa 'input_name' para enviar el nombre del campo al servidor
+                },
+                success: function (data) {
+                    // Actualiza el valor de la celda con la calificación obtenida
+                    inputElement.val(data.notas);
+                    
+                    var successIndicator = $('#successIndicator').val();
+                    if (successIndicator === 'True') {                      
+                      Swal.fire({
+                          title: "Buen Trabajo!",
+                          text: "¡Se guardó correctamente!",
+                          icon: "success",
+                          timer: 3000
+                      });                               
+                    }                                  
+                },
+                error: function () {
+                    Swal.fire({
+                        title: "Error",
+                        text: "¡Hubo un problema al obtener las calificaciones!",
+                        icon: "error",
+                        timer: 3000
+                    });
+                }
+            });
+        });
+
+        // Función para obtener el token CSRF del documento
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = $.trim(cookies[i]);
+                    if (cookie.substring(0, name.length + 1) === name + '=') {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+      });
+    </script>
+  </body>
+</html>
+{% endblock %}

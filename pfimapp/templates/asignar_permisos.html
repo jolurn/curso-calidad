@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asignar Permisos</title>
+</head>
+<body>
+    <h1>Asignar Permisos</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="user">Usuario:</label>
+        <select name="user" id="user">
+            <!-- Aquí puedes iterar sobre los usuarios disponibles y mostrarlos en el select -->
+            {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="group">Grupo:</label>
+        <select name="group" id="group">
+            <!-- Aquí puedes iterar sobre los grupos disponibles y mostrarlos en el select -->
+            {% for group in groups %}
+                <option value="{{ group.id }}">{{ group.name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <!-- Aquí podrías incluir opciones para asignar permisos específicos -->
+        <input type="submit" value="Asignar Permisos">
+    </form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="text-center">
+                <img src="{% static 'pfimapp/img/perfil.png' %}" class="img-fluid rounded-circle mb-3"
+                    alt="{{ user.nombre_completos }}">
+            </div>
+            <h1>Información del Usuario</h1>
+            <p>Nombre: {{ user.nombre_completos }}</p>
+            <p>Correo Electrónico: {{ user.email }}</p>
+            {% comment %} <p>Correo Electrónico UNI: {% if user.correoUNI == None  %} ... {% else %} {{ user.correoUNI }} {% endif%}</p>             {% endcomment %}
+        </div>
+        <div class="col-lg-8 mb-5 mt-4">
+            <h2>Editar Información del Usuario</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary fondoAzul">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
