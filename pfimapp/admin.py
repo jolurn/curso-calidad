@@ -91,6 +91,17 @@ class UserAdmin(admin.ModelAdmin):
             obj.usuarioPosgradoFIM = request.user.apellidoPaterno + ' ' + request.user.apellidoMaterno + ' ' + request.user.primerNombre
         super().save_model(request, obj, form, change)
 
+    def get_exclude(self, request, obj=None):
+        # Obtener el usuario autenticado
+        user = request.user
+
+        if user.is_superuser:
+            # Si el usuario autenticado es superusuario, ocultar last_login, eliminado y fechaRegistro
+            return ['last_login', 'eliminado', 'fechaRegistro']
+        else:
+            # Si el usuario autenticado no es superusuario, ocultar is_superuser, user_permissions, groups, last_login, eliminado y fechaRegistro
+            return ['is_superuser', 'user_permissions', 'groups', 'last_login', 'eliminado', 'fechaRegistro']
+        
     def delete_model(self, request, obj):
         obj.delete()  # Llama al método delete del modelo para marcarlo como eliminado
         obj.ipUsuario = obtener_ip()  # Registra la IP del usuario que realiza la eliminación
