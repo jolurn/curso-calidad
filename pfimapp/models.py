@@ -152,9 +152,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     apellidoPaterno = models.CharField(max_length=50, validators=[validate_min_length_and_letters(3)])
     apellidoMaterno = models.CharField(max_length=50, validators=[validate_min_length_and_letters(3)])    
     estadoCivil = models.ForeignKey(EstadoCivil, null=True, on_delete=models.SET_NULL)
-    correoUNI = models.EmailField(max_length=50, validators=[validate_min_length_correo(8)], unique=True, null=True, blank=True)    
+    correoUNI = models.EmailField(max_length=50, validators=[validate_min_length_correo(8)], unique=True)    
     telefono = models.CharField(max_length=15, validators=[validate_min_numeric_length(7)])
-    fechaNacimiento = models.DateField(null=True, blank=True, validators=[validate_past_date], help_text="Formato: AAAA-MM-DD")
+    fechaNacimiento = models.DateField(validators=[validate_past_date], help_text="Formato: AAAA-MM-DD")
     eliminado = models.BooleanField(default=False)  # Campo para la eliminación suave
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
