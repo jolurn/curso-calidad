@@ -190,8 +190,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         if self.tipoDocumento:
             if self.tipoDocumento.nombre == 'DOCUMENTO NACIONAL DE IDENTIDAD' and len(self.numeroDocumento) != 8:
                 raise ValidationError('El número de documento debe tener 8 caracteres para DNI.')
-            elif self.tipoDocumento.nombre in ['CARNET DE EXTRANJERIA', 'PASAPORTE'] and len(self.numeroDocumento) != 12:
-                raise ValidationError('El número de documento debe tener 12 caracteres para carné de extranjería o pasaporte.')
+            elif self.tipoDocumento.nombre in ['CARNET DE EXTRANJERIA', 'PASAPORTE'] and len(self.numeroDocumento) < 12:
+                raise ValidationError('El número de documento debe tener menos de 12 caracteres para carné de extranjería o pasaporte.')
 
     def __str__(self):
         return self.nombre_completos()
