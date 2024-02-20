@@ -46,10 +46,10 @@ def validate_min_length_correo(min_length):
 
 def validate_past_date(value):
     # Calcula la fecha hace 26 años a partir de la fecha actual
-    min_birth_date = timezone.now().date() - timedelta(days=(26 * 365))
+    min_birth_date = timezone.now().date() - timedelta(days=(22 * 365))
 
     if value > timezone.now().date():
         raise ValidationError('La fecha de nacimiento no puede estar en el futuro.')
     elif value > min_birth_date:
-        raise ValidationError('La edad mínima permitida es de 26 años.')
+        raise ValidationError('La edad mínima permitida es de 22 años.')
     
