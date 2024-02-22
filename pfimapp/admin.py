@@ -33,10 +33,13 @@ class SeccionAdmin(admin.ModelAdmin):
         if obj is not None:
             self.delete_model(request, obj)
             return self.response_delete(request, obj)
-        return self.response_delete(request, obj, post_url=reverse('admin:app_model_changelist'))
+        return self.response_delete(request, object_id, post_url=reverse('admin:app_model_changelist'))
     
     def delete_model(self, request, obj):
-        obj.delete()  # Llama al método delete del modelo para marcarlo como eliminado
+        """
+        Elimina el objeto marcándolo como eliminado en lugar de eliminarlo de la base de datos.
+        """
+        obj.delete()  # Llama al método delete() del modelo para la eliminación suave
         obj.ipUsuario = obtener_ip()  # Registra la IP del usuario que realiza la eliminación
         obj.save()
 
@@ -63,10 +66,13 @@ class DocenteAdmin(admin.ModelAdmin):
         if obj is not None:
             self.delete_model(request, obj)
             return self.response_delete(request, obj)
-        return self.response_delete(request, obj, post_url=reverse('admin:app_model_changelist'))
+        return self.response_delete(request, object_id, post_url=reverse('admin:app_model_changelist'))
     
     def delete_model(self, request, obj):
-        obj.delete()  # Llama al método delete del modelo para marcarlo como eliminado
+        """
+        Elimina el objeto marcándolo como eliminado en lugar de eliminarlo de la base de datos.
+        """
+        obj.delete()  # Llama al método delete() del modelo para la eliminación suave
         obj.ipUsuario = obtener_ip()  # Registra la IP del usuario que realiza la eliminación
         obj.save()
 
@@ -93,10 +99,13 @@ class CursoAdmin(admin.ModelAdmin):
         if obj is not None:
             self.delete_model(request, obj)
             return self.response_delete(request, obj)
-        return self.response_delete(request, obj, post_url=reverse('admin:app_model_changelist'))
+        return self.response_delete(request, object_id, post_url=reverse('admin:app_model_changelist'))
     
     def delete_model(self, request, obj):
-        obj.delete()  # Llama al método delete del modelo para marcarlo como eliminado
+        """
+        Elimina el objeto marcándolo como eliminado en lugar de eliminarlo de la base de datos.
+        """
+        obj.delete()  # Llama al método delete() del modelo para la eliminación suave
         obj.ipUsuario = obtener_ip()  # Registra la IP del usuario que realiza la eliminación
         obj.save()
 
@@ -133,10 +142,13 @@ class UserAdmin(admin.ModelAdmin):
         if obj is not None:
             self.delete_model(request, obj)
             return self.response_delete(request, obj)
-        return self.response_delete(request, obj, post_url=reverse('admin:app_model_changelist'))
+        return self.response_delete(request, object_id, post_url=reverse('admin:app_model_changelist'))
     
     def delete_model(self, request, obj):
-        obj.delete()  # Llama al método delete del modelo para marcarlo como eliminado
+        """
+        Elimina el objeto marcándolo como eliminado en lugar de eliminarlo de la base de datos.
+        """
+        obj.delete()  # Llama al método delete() del modelo para la eliminación suave
         obj.ipUsuario = obtener_ip()  # Registra la IP del usuario que realiza la eliminación
         obj.save()
 
@@ -163,10 +175,13 @@ class PeriodoAdmin(admin.ModelAdmin):
         if obj is not None:
             self.delete_model(request, obj)
             return self.response_delete(request, obj)
-        return self.response_delete(request, obj, post_url=reverse('admin:app_model_changelist'))
+        return self.response_delete(request, object_id, post_url=reverse('admin:app_model_changelist'))
     
     def delete_model(self, request, obj):
-        obj.delete()  # Llama al método delete del modelo para marcarlo como eliminado
+        """
+        Elimina el objeto marcándolo como eliminado en lugar de eliminarlo de la base de datos.
+        """
+        obj.delete()  # Llama al método delete() del modelo para la eliminación suave
         obj.ipUsuario = obtener_ip()  # Registra la IP del usuario que realiza la eliminación
         obj.save()
 
@@ -193,10 +208,13 @@ class TipoDocumentoAdmin(admin.ModelAdmin):
         if obj is not None:
             self.delete_model(request, obj)
             return self.response_delete(request, obj)
-        return self.response_delete(request, obj, post_url=reverse('admin:app_model_changelist'))
+        return self.response_delete(request, object_id, post_url=reverse('admin:app_model_changelist'))
     
     def delete_model(self, request, obj):
-        obj.delete()  # Llama al método delete del modelo para marcarlo como eliminado
+        """
+        Elimina el objeto marcándolo como eliminado en lugar de eliminarlo de la base de datos.
+        """
+        obj.delete()  # Llama al método delete() del modelo para la eliminación suave
         obj.ipUsuario = obtener_ip()  # Registra la IP del usuario que realiza la eliminación
         obj.save()
 
@@ -223,10 +241,13 @@ class EstadoBoletaPAdmin(admin.ModelAdmin):
         if obj is not None:
             self.delete_model(request, obj)
             return self.response_delete(request, obj)
-        return self.response_delete(request, obj, post_url=reverse('admin:app_model_changelist'))
+        return self.response_delete(request, object_id, post_url=reverse('admin:app_model_changelist'))
     
     def delete_model(self, request, obj):
-        obj.delete()  # Llama al método delete del modelo para marcarlo como eliminado
+        """
+        Elimina el objeto marcándolo como eliminado en lugar de eliminarlo de la base de datos.
+        """
+        obj.delete()  # Llama al método delete() del modelo para la eliminación suave
         obj.ipUsuario = obtener_ip()  # Registra la IP del usuario que realiza la eliminación
         obj.save()
 
@@ -253,10 +274,13 @@ class SedeAdmin(admin.ModelAdmin):
         if obj is not None:
             self.delete_model(request, obj)
             return self.response_delete(request, obj)
-        return self.response_delete(request, obj, post_url=reverse('admin:app_model_changelist'))
+        return self.response_delete(request, object_id, post_url=reverse('admin:app_model_changelist'))
     
     def delete_model(self, request, obj):
-        obj.delete()  # Llama al método delete del modelo para marcarlo como eliminado
+        """
+        Elimina el objeto marcándolo como eliminado en lugar de eliminarlo de la base de datos.
+        """
+        obj.delete()  # Llama al método delete() del modelo para la eliminación suave
         obj.ipUsuario = obtener_ip()  # Registra la IP del usuario que realiza la eliminación
         obj.save()
 
@@ -283,10 +307,13 @@ class EstadoCivilAdmin(admin.ModelAdmin):
         if obj is not None:
             self.delete_model(request, obj)
             return self.response_delete(request, obj)
-        return self.response_delete(request, obj, post_url=reverse('admin:app_model_changelist'))
+        return self.response_delete(request, object_id, post_url=reverse('admin:app_model_changelist'))
     
     def delete_model(self, request, obj):
-        obj.delete()  # Llama al método delete del modelo para marcarlo como eliminado
+        """
+        Elimina el objeto marcándolo como eliminado en lugar de eliminarlo de la base de datos.
+        """
+        obj.delete()  # Llama al método delete() del modelo para la eliminación suave
         obj.ipUsuario = obtener_ip()  # Registra la IP del usuario que realiza la eliminación
         obj.save()
 
@@ -314,10 +341,13 @@ class EstadoAcademicoAdmin(admin.ModelAdmin):
         if obj is not None:
             self.delete_model(request, obj)
             return self.response_delete(request, obj)
-        return self.response_delete(request, obj, post_url=reverse('admin:app_model_changelist'))
+        return self.response_delete(request, object_id, post_url=reverse('admin:app_model_changelist'))
     
     def delete_model(self, request, obj):
-        obj.delete()  # Llama al método delete del modelo para marcarlo como eliminado
+        """
+        Elimina el objeto marcándolo como eliminado en lugar de eliminarlo de la base de datos.
+        """
+        obj.delete()  # Llama al método delete() del modelo para la eliminación suave
         obj.ipUsuario = obtener_ip()  # Registra la IP del usuario que realiza la eliminación
         obj.save()
 
@@ -346,10 +376,13 @@ class MaestriaAdmin(admin.ModelAdmin):
         if obj is not None:
             self.delete_model(request, obj)
             return self.response_delete(request, obj)
-        return self.response_delete(request, obj, post_url=reverse('admin:app_model_changelist'))
+        return self.response_delete(request, object_id, post_url=reverse('admin:app_model_changelist'))
     
     def delete_model(self, request, obj):
-        obj.delete()  # Llama al método delete del modelo para marcarlo como eliminado
+        """
+        Elimina el objeto marcándolo como eliminado en lugar de eliminarlo de la base de datos.
+        """
+        obj.delete()  # Llama al método delete() del modelo para la eliminación suave
         obj.ipUsuario = obtener_ip()  # Registra la IP del usuario que realiza la eliminación
         obj.save()
 
@@ -361,30 +394,37 @@ class AlumnoAdmin(admin.ModelAdmin):
     # --- poner en solo lectura los input ---
     exclude = ('fechaRegistro', 'fechaModificado','usuarioPosgradoFIM', 'ipUsuario','eliminado')
     readonly_fields = ('fechaRegistro', 'fechaModificado','usuarioPosgradoFIM', 'ipUsuario')
-# ----- Fin poner en solo lectura los input -----
+    # ----- Fin poner en solo lectura los input -----
     list_display = ('usuario', 'maestria', 'periodoDeIngreso',
                     'codigoUniPreGrado', 'estadoAcademico', 'fechaRegistro')
    
-    def save_model(self, request, obj, form, change):
-        # request.user es el usuario autenticado en ese momento
-
+    def save_model(self, request, obj, form, change):       
+        
         obj.usuarioPosgradoFIM = request.user.apellidoPaterno + ' ' + request.user.apellidoMaterno + ' ' + request.user.primerNombre
         super().save_model(request, obj, form, change)
 
-    def delete_view(self, request, object_id, extra_context=None):
-        # Tu lógica de eliminación personalizada
-        obj = self.get_object(request, object_id)
-        if obj is not None:
-            self.delete_model(request, obj)
-            return self.response_delete(request, obj)
-        return self.response_delete(request, obj, post_url=reverse('admin:app_model_changelist'))
-    
+
+
+
     def delete_model(self, request, obj):
-        obj.delete()  # Llama al método delete del modelo para marcarlo como eliminado
-        obj.ipUsuario = obtener_ip()  # Registra la IP del usuario que realiza la eliminación
-        obj.save()
+        """
+        Elimina el objeto marcándolo como eliminado en lugar de eliminarlo de la base de datos.
+        """
+        obj.delete()  # Llama al método delete() del modelo para la eliminación suave
+        print("Asignando dirección IP del usuario...")
+        obj.ipUsuario = obtener_ip()  # Registra la IP del usuario que realiza la eliminación       
+        obj.save()        
+
+    def get_queryset(self, request):
+        # Filtra los objetos para no incluir los marcados como eliminados
+        return super().get_queryset(request).filter(eliminado=False)      
+
+    def get_queryset(self, request):
+        # Filtra los objetos para no incluir los marcados como eliminados
+        return super().get_queryset(request).filter(eliminado=False)
 
 admin.site.register(Alumno, AlumnoAdmin)
+
 
 class ConceptoPagoAdmin(admin.ModelAdmin):
     search_fields = ['nombre']
@@ -407,10 +447,13 @@ class ConceptoPagoAdmin(admin.ModelAdmin):
         if obj is not None:
             self.delete_model(request, obj)
             return self.response_delete(request, obj)
-        return self.response_delete(request, obj, post_url=reverse('admin:app_model_changelist'))
+        return self.response_delete(request, object_id, post_url=reverse('admin:app_model_changelist'))
     
     def delete_model(self, request, obj):
-        obj.delete()  # Llama al método delete del modelo para marcarlo como eliminado
+        """
+        Elimina el objeto marcándolo como eliminado en lugar de eliminarlo de la base de datos.
+        """
+        obj.delete()  # Llama al método delete() del modelo para la eliminación suave
         obj.ipUsuario = obtener_ip()  # Registra la IP del usuario que realiza la eliminación
         obj.save()
 
@@ -437,10 +480,13 @@ class ReporteEcoConceptoPagoAdmin(admin.TabularInline):
         if obj is not None:
             self.delete_model(request, obj)
             return self.response_delete(request, obj)
-        return self.response_delete(request, obj, post_url=reverse('admin:app_model_changelist'))
+        return self.response_delete(request, object_id, post_url=reverse('admin:app_model_changelist'))
     
     def delete_model(self, request, obj):
-        obj.delete()  # Llama al método delete del modelo para marcarlo como eliminado
+        """
+        Elimina el objeto marcándolo como eliminado en lugar de eliminarlo de la base de datos.
+        """
+        obj.delete()  # Llama al método delete() del modelo para la eliminación suave
         obj.ipUsuario = obtener_ip()  # Registra la IP del usuario que realiza la eliminación
         obj.save()
 
@@ -469,10 +515,13 @@ class ReporteEconomicoAdmin(admin.ModelAdmin):
         if obj is not None:
             self.delete_model(request, obj)
             return self.response_delete(request, obj)
-        return self.response_delete(request, obj, post_url=reverse('admin:app_model_changelist'))
+        return self.response_delete(request, object_id, post_url=reverse('admin:app_model_changelist'))
     
     def delete_model(self, request, obj):
-        obj.delete()  # Llama al método delete del modelo para marcarlo como eliminado
+        """
+        Elimina el objeto marcándolo como eliminado en lugar de eliminarlo de la base de datos.
+        """
+        obj.delete()  # Llama al método delete() del modelo para la eliminación suave
         obj.ipUsuario = obtener_ip()  # Registra la IP del usuario que realiza la eliminación
         obj.save()
 
@@ -499,10 +548,13 @@ class DetalleMatriculaAdmin(admin.TabularInline):
         if obj is not None:
             self.delete_model(request, obj)
             return self.response_delete(request, obj)
-        return self.response_delete(request, obj, post_url=reverse('admin:app_model_changelist'))
+        return self.response_delete(request, object_id, post_url=reverse('admin:app_model_changelist'))
     
     def delete_model(self, request, obj):
-        obj.delete()  # Llama al método delete del modelo para marcarlo como eliminado
+        """
+        Elimina el objeto marcándolo como eliminado en lugar de eliminarlo de la base de datos.
+        """
+        obj.delete()  # Llama al método delete() del modelo para la eliminación suave
         obj.ipUsuario = obtener_ip()  # Registra la IP del usuario que realiza la eliminación
         obj.save()
 
@@ -528,10 +580,13 @@ class MatriculaAdmin(admin.ModelAdmin):
         if obj is not None:
             self.delete_model(request, obj)
             return self.response_delete(request, obj)
-        return self.response_delete(request, obj, post_url=reverse('admin:app_model_changelist'))
+        return self.response_delete(request, object_id, post_url=reverse('admin:app_model_changelist'))
     
     def delete_model(self, request, obj):
-        obj.delete()  # Llama al método delete del modelo para marcarlo como eliminado
+        """
+        Elimina el objeto marcándolo como eliminado en lugar de eliminarlo de la base de datos.
+        """
+        obj.delete()  # Llama al método delete() del modelo para la eliminación suave
         obj.ipUsuario = obtener_ip()  # Registra la IP del usuario que realiza la eliminación
         obj.save()
 

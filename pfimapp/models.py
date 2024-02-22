@@ -300,11 +300,31 @@ class Alumno(models.Model):
             return "{} {} {}-{}".format(self.usuario.apellidoPaterno, self.usuario.apellidoMaterno, self.usuario.primerNombre, self.maestria.codigo)
         else:
             return "Nombre no disponible"
-    
+       
+    def clean(self):
+        print("Validación de clean en el modelo Alumno...")
+        # Validación de unicidad basada en el campo eliminado
+        if self.pk is None:  # Solo para nuevos registros
+            if Alumno.objects.filter(usuario=self.usuario, maestria=self.maestria, eliminado=True).exists():
+                print("Permitiendo la creación de un nuevo registro.")
+                return  # Permitir la creación incluso si existe un registro eliminado
+            elif Alumno.objects.filter(usuario=self.usuario, maestria=self.maestria, eliminado=False).exists():
+                raise ValidationError('Ya existe un alumno activo con la misma combinación de usuario y maestría.')
+        else:
+            print("No se está ejecutando la validación para un nuevo registro.")
+
+
+    def save(self, *args, **kwargs):
+        
+        # Ejecutar la validación antes de guardar
+        self.full_clean()
+        super().save(*args, **kwargs)
+
+
     def delete(self, *args, **kwargs):
         self.eliminado = True
         self.save()
-
+        
     def __str__(self):
         return self.nombre_completo()
 
